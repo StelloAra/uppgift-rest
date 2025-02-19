@@ -1,0 +1,171 @@
+.scrollable-page {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+
+    .section {
+      scroll-snap-align: start;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      margin-bottom: 20px; // Avstånd mellan sektionerna
+  
+      &.video-section {
+        background-color: #000;
+  
+        .video {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: 0 90%;
+        }
+  
+        .booking-overlay {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          color: white;
+          padding: 2rem 4rem;
+          text-align: center;
+          border-radius: 10px;
+          text-decoration: none;
+          transition: background 0.3s ease;
+  
+          &:hover {
+            color: red;
+          }
+  
+          .booking-content {
+            h1 {
+              font-size: 2.5rem;
+              margin-bottom: 0.5rem;
+            }
+  
+            p {
+              font-size: 1.5rem;
+              font-weight: bold;
+            }
+          }
+        }
+      }
+  
+      &.image-section {
+        background-color: #f0f0f0;
+  
+        .image {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+  
+      &.text-section {
+        flex-direction: column;
+        padding: 40px 20px;
+        text-align: center;
+        background-color: #fff;
+  
+        .text-container {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+  
+          .text-item {
+            .item-title {
+              font-size: 1.2rem;
+              margin-bottom: 10px;
+            }
+  
+            .item-text {
+              font-size: 1rem;
+              color: #666;
+            }
+          }
+        }
+      }
+
+      &.image-section-double {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+  
+        .image-link {
+          width: 100%;
+          text-decoration: none;
+          position: relative;
+  
+          .image {
+            width: 100%;
+            height: auto;
+            display: block;
+          }
+  
+          // Overlay på bilderna
+          &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            transition: background 0.3s ease;
+          }
+  
+          &:hover::before {
+            background: rgba(0, 0, 0, 0.6);
+          }
+  
+          .overlay-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            z-index: 1;
+          }
+        }
+      }
+    }
+  }
+  
+  // Större skärmar (Desktop)
+  @media (min-width: 769px) {
+    .scrollable-page {
+      .section {
+        margin-bottom: 40px; // Större avstånd på desktop
+  
+        &.text-section {
+          .text-container {
+            flex-direction: row;
+            justify-content: center;
+  
+            .text-item {
+              flex: 1;
+              max-width: 300px;
+            }
+          }
+        }
+  
+        &.image-section-double {
+          flex-direction: row;
+          justify-content: center;
+  
+          .image-link {
+            flex: 1;
+            min-width: 45%;
+          }
+        }
+      }
+    }
+  }
+  
